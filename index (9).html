@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Cookie</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+        .cookie-container {
+            position: relative;
+        }
+        .cookie {
+            width: 100px; /* Adjust size as needed */
+            height: 100px; /* Adjust size as needed */
+            background-image: url("https://i.pinimg.com/564x/11/21/56/11215611f7e4d0b5a32a20cbea1c0f13.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        }
+        .button {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 30px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #8B4513; /* Light brown */
+            animation: confetti-fall 2s linear infinite;
+        }
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        function celebrate() {
+            // Hide the cookie and button
+            document.querySelector('.cookie-container').style.display = 'none';
+
+            // Create confetti
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = Math.random() * window.innerHeight + 'px';
+                confetti.style.animationDelay = Math.random() + 's';
+                document.body.appendChild(confetti);
+            }
+
+            // Create a new element for the welcome message
+            const welcomeMessage = document.createElement('div');
+            welcomeMessage.textContent = 'Yeppie, welcome to the cookie gang!';
+            welcomeMessage.style.textAlign = 'center';
+            welcomeMessage.style.fontSize = '24px';
+            welcomeMessage.style.marginTop = '50px';
+            document.body.appendChild(welcomeMessage);
+
+            // Create a new element for the "Next" button
+            const nextButton = document.createElement('button');
+            nextButton.textContent = 'Next';
+            nextButton.classList.add('button');
+            nextButton.style.bottom = '20px';
+            nextButton.onclick = goToNextScreen;
+            document.body.appendChild(nextButton);
+        }
+
+        function goToNextScreen() {
+            // Clear the body
+            document.body.innerHTML = '';
+
+            // Create a new element for the third screen
+            const thankYouMessage = document.createElement('div');
+            thankYouMessage.textContent = 'Thank you for following Imjmilk!';
+            thankYouMessage.style.textAlign = 'center';
+            thankYouMessage.style.fontSize = '24px';
+            thankYouMessage.style.marginTop = '50px';
+            document.body.appendChild(thankYouMessage);
+        }
+    </script>
+
+    <div class="cookie-container">
+        <div class="cookie"></div>
+        <button class="button" onclick="celebrate()">Get a Free Cookie</button>
+    </div>
+</body>
+</html>
